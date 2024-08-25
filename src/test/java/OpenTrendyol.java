@@ -1,4 +1,5 @@
 import com.thoughtworks.gauge.Step;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,10 +14,16 @@ import java.util.Properties;
 public class OpenTrendyol {
 
     WebDriver driver;
+    Properties locators;
 
+    public OpenTrendyol() throws IOException {
+        locators = new Properties();
+        FileInputStream locatorsFile = new FileInputStream("locators.properties");
+        locators.load(locatorsFile);
+    }
     @Step("Setup browser")
     public void setupBrowser() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
@@ -31,7 +38,7 @@ public class OpenTrendyol {
 
     @Step("Close pop-up")
     public void closePopup() {
-        WebElement closeButton = driver.findElement(By.xpath("//*[name()='svg' and @width='13px' and @height='13px']"));
+        WebElement closeButton = findElementByXpath("closeButton");
         closeButton.click();
     }
 
@@ -50,27 +57,31 @@ public class OpenTrendyol {
         String email = properties.getProperty("email");
         String password = properties.getProperty("password");
 
-        WebElement emailInput = driver.findElement(By.xpath("//input[@id='login-email']"));
+        WebElement emailInput = findElementByXpath("emailInput");
         emailInput.sendKeys(email);
 
-        WebElement passwordInput = driver.findElement(By.xpath("//input[@id='login-password-input']"));
+        WebElement passwordInput = findElementByXpath("passwordInput");
         passwordInput.sendKeys(password);
     }
 
     @Step("Submit login form")
     public void submitLogin() {
-        WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
+        WebElement loginButton = findElementByXpath("loginButton");
         loginButton.click();
     }
 
     @Step("Verify login successful")
     public void verifyLogin() {
-        WebElement logo = driver.findElement(By.xpath("//img[@alt='Trendyol']"));
+        WebElement logo = findElementByXpath("logo");
         if (logo.isDisplayed()) {
             System.out.println("Login successful!");
         } else {
             System.out.println("Login failed.");
         }
         driver.quit();
+    }
+
+    public WebElement findElementByXpath(String key) {
+        return driver.findElement(By.xpath(locators.getProperty(key)));
     }
 }
