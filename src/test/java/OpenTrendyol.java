@@ -29,10 +29,10 @@ public class OpenTrendyol {
         navbarLoginButton.click();
 
         WebElement emailInput = driver.findElement(By.xpath("//input[@id='login-email']"));
-        emailInput.sendKeys("seenduygu@gmail.com");
+        emailInput.sendKeys("*");
 
         WebElement passwordInput = driver.findElement(By.xpath("//input[@id='login-password-input']"));
-        passwordInput.sendKeys("Dyg2610.");
+        passwordInput.sendKeys("*");
 
         WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
         loginButton.click();
