@@ -49,4 +49,8 @@ build/
 ### Mac OS ###
 .DS_Store
 
+Dockerfile
+.dockerignore
+.idea
+target
 config.properties

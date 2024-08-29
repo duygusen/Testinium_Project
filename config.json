@@ -1,0 +1,21 @@
+{
+  "browser": "chrome",
+  "locators": {
+    "closeButton": "//*[name()='svg' and @width='13px' and @height='13px']",
+    "navbarLoginButton": "//p[contains(text(),'Giriş Yap')]",
+    "emailInput": "//input[@id='login-email']",
+    "passwordInput": "//input[@id='login-password-input']",
+    "loginButton": "//button[@type='submit']",
+    "logo": "//img[@alt='Trendyol']",
+
+    "searchInput": "//input[@placeholder='Aradığınız ürün, kategori veya markayı yazınız']",
+    "searchButton": "//i[@class='cyrzo7gC']",
+    "overlay":"//div[@class='overlay']",
+    "productList": "//div[@title='iPhone 13 128 GB Gece Yarısı Cep Telefonu (Apple Türkiye Garantili)']//div[@class='product-card-grid-layout']//div[1]",
+    "addToCartButton": "//div[@class='add-to-basket-button-text']",
+    "cartButton": "//div[@class='basket-preview-popup']",
+    "cartPopupButton": "//div[@class='delivery-and-favorite-wrapper']",
+    "productInCart": "//p[@title='Apple iPhone 13 128 GB Gece Yarısı Cep Telefonu (Apple Türkiye Garantili)']",
+    "checkoutButton": "//div[@class='pb-summary']//div[1]//a[1]"
+  }
+}
